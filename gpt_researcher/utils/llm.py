@@ -14,7 +14,11 @@ from langchain_openai import ChatOpenAI
 from gpt_researcher.master.prompts import auto_agent_instructions, generate_subtopics_prompt
 import os
 from .validators import Subtopics
+import os
 
+from colorama import Fore, Style
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 def get_provider(llm_provider):
     match llm_provider:
