@@ -12,7 +12,7 @@ from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
 from gpt_researcher.master.prompts import auto_agent_instructions, generate_subtopics_prompt
-
+import os
 from .validators import Subtopics
 
 
@@ -123,7 +123,13 @@ async def construct_subtopics(task: str, data: str, config, subtopics: list = []
 
         print(f"\n🤖 Calling {config.smart_llm_model}...\n")
 
-        if config.llm_provider == "openai":
+        if config.llm_provider == "google":
+            model = ChatGoogleGenerativeAI(
+                        convert_system_message_to_human=True,
+                        model='gemini-1.0-pro-latest',
+                        google_api_key=os.environ["GEMINI_API_KEY"]
+                    )
+        elif config.llm_provider == "openai":
             model = ChatOpenAI(model=config.smart_llm_model)
         elif config.llm_provider == "azureopenai":
             from langchain_openai import AzureChatOpenAI
