@@ -130,7 +130,7 @@ async def construct_subtopics(task: str, data: str, config, subtopics: list = []
         if config.llm_provider == "google":
             model = ChatGoogleGenerativeAI(
                         convert_system_message_to_human=True,
-                        model='gemini-1.0-pro-latest',
+                        model='gemini-1.5-pro-latest',
                         google_api_key=os.environ["GEMINI_API_KEY"]
                     )
         elif config.llm_provider == "openai":
