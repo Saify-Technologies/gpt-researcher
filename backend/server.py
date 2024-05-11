@@ -53,7 +53,7 @@ async def websocket_endpoint(websocket: WebSocket):
                     # Saving report as docx
                     docx_path = await write_md_to_word(report)
                     # Returning the path of saved report files
-                    await websocket.send_json({"type": "path", "output": {"pdf": pdf_path, "docx": docx_path}})
+                    websocket.send_json({"type": "path", "output": {"pdf": pdf_path, "docx": docx_path}})
                 else:
                     print("Error: not enough parameters provided.")
 

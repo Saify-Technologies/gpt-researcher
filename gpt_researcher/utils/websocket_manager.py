@@ -29,7 +29,7 @@ class WebSocketManager:
             message = await queue.get()
             if websocket in self.active_connections:
                 try:
-                    await websocket.send_text(message)
+                    websocket.send_text(message)
                 except:
                     break
             else:
@@ -75,6 +75,6 @@ async def run_agent(task, report_type, websocket):
     report = await researcher.run()
     # measure time
     end_time = datetime.datetime.now()
-    await websocket.send_json({"type": "logs", "output": f"\nTotal run time: {end_time - start_time}\n"})
+    websocket.send_json({"type": "logs", "output": f"\nTotal run time: {end_time - start_time}\n"})
 
     return report
