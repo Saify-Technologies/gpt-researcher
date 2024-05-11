@@ -267,7 +267,7 @@ async def stream_output(type, output, websocket=None, logging=True):
         print(output)
 
     if websocket:
-        await websocket.send_json({"type": type, "output": output})
+        websocket.send_json({"type": type, "output": output})
 
 async def get_report_introduction(query, context, role, config, websocket=None):
     try:
